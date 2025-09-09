@@ -1,0 +1,38 @@
+[
+     {
+        "question": "1+1",
+        "options": [2,3,4,5],
+        "answer": 2
+    },
+    {
+        "question": "3+2",
+        "options": [2,3,4,5],
+        "answer": 5
+    },
+    {
+        "question": "9-2",
+        "options": [2,3,7,5],
+        "answer": 7
+    },
+    {
+        "question": "3-1",
+        "options": [2,3,7,5],
+        "answer": 2
+    },
+    {
+        "question": "2*3",
+        "options": [2,6,7,5],
+        "answer": 6
+    }, 
+    {
+        "question": "40/20",
+        "options": [2,3,7,5],
+        "answer": 2
+    },
+    {
+        "question": "6+6",
+        "options": [2,3,7,12],
+        "answer": 12
+    }
+    
+]

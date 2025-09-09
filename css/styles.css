@@ -16,11 +16,48 @@ body{
     padding: 15px;
     box-shadow: 5px 5px 10px #5d3fd3;
 }
+/*styling the choosing no of questions page*/
+.chooseNumOfQuestionsPage{
+    border: 1px solid #5d3fd3;
+    border-radius: 10px;
+    padding: 10px;
+}
+.chooseNumOfQuestionsPage header{
+    margin-bottom: 5px;
+    border-bottom: 1px solid #5d3fd3;
+    color:#5d3fd3;
+}
+.chooseNumOfQuestionsPage p{
+    color: #5d3fd3;
+}
+.chooseNumOfQuestionsPageBtnsBox{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+.chooseNumOfQuestionsPageBtnsBox .numOfQuestionsBtn{
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #5d3fd3;
+    background-image: linear-gradient(to bottom right, #5d3fd3, #e6e6fa );
+    color: #e6e6fa;
+    font-weight: bold;
+}
+.chooseNumOfQuestionsPageBtnsBox .numOfQuestionsBtn:active{
+    transform: translateY(0.6px);
+}
+.chooseNumOfQuestionsPageBtnsBox .numOfQuestionsBtn:hover{
+    background-image: linear-gradient(to bottom right, #e6e6fa, #5d3fd3 50% );
+}
 /*styling the home page*/
 .homePage{
     border: 1px solid #5d3fd3;
     border-radius: 10px;
     padding: 10px;
+    display: none;
 }
 .homePage header{
     margin-bottom: 10px;
@@ -63,12 +100,16 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-.utilities .progressBar{
+.utilities .progressBarContainer{
     border: 1px solid #5d3fd3;
     border-radius: 15px;
-    background-color: #5d3fd3;
     width: 60%;
     height: 10px;
+}
+.progressBarContainer .progressBar{
+    height: 100%;
+    background-color: #5d3fd3;
+    width: 0;
 }
 .utilities #timer{
     color: #5d3fd3;
@@ -111,11 +152,12 @@ body{
 }
 .navigationBtnsBox{
    display: flex;
+   justify-content: center;
    gap: 20px;
    padding: 10px;
 }
 .navigationBtnsBox button{
-    width: 100%;
+    width: 70%;
     padding: 8px;
     border-radius: 10px;
     border: 1px solid #5d3fd3;
@@ -127,6 +169,78 @@ body{
     transform: translateY(0.6px);
 }
 .navigationBtnsBox button:hover{
+    background-image: linear-gradient(to bottom right, #e6e6fa, #5d3fd3 50% );
+}
+#currentQuestionCounter{
+    font-size: 12px;
+    font-weight: lighter;
+    color: #2b2b2b;
+    text-align: center;
+}
+/*styling the resultPage*/
+.resultPage{
+    display: none;
+    border: 1px solid #5d3fd3;
+    padding: 10px;
+}
+.resultPage header{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    color:#5d3fd3;
+}
+.resultPage #remarks{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color:#5d3fd3;
+    margin-bottom: 10px;
+}
+.resultPage .scoreBoxContainer{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.scoreBoxContainer .scoreBox1, .scoreBox2{
+    text-align: center;
+    border: 1px solid #5d3fd3;
+    border-radius: 10px;
+    padding: 10px;
+    color: #5d3fd3;
+}
+.scoreBox1 div, .scoreBox2 div{
+    border-bottom: 1px solid #5d3fd3;
+}
+#userScore, #userPoints{
+    font-size: 20px;
+    font-weight: bold;
+}
+#questionsAttempted{
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+    color: #5d3fd3;
+    font-weight:500;
+}
+.reviewOrReplayBtnsBox{
+   display: flex;
+   justify-content: center;
+   gap: 20px;
+   padding: 10px;
+}
+.reviewOrReplayBtnsBox button{
+    width: 100px;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #5d3fd3;
+    background-image: linear-gradient(to bottom right, #5d3fd3, #e6e6fa );
+    color: #e6e6fa;
+    font-weight: bold;
+}
+.reviewOrReplayBtnsBox button:active{
+    transform: translateY(0.6px);
+}
+.reviewOrReplayBtnsBox button:hover{
     background-image: linear-gradient(to bottom right, #e6e6fa, #5d3fd3 50% );
 }
 @media screen and (width <= 800px) {

@@ -8,6 +8,17 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="chooseNumOfQuestionsPage">
+            <header>
+                <h1>Test Your Thai</h1>
+            </header>
+            <p>Choose Number of questions</p>
+            <div class="chooseNumOfQuestionsPageBtnsBox">
+                <button class="numOfQuestionsBtn" data-num-of-questions="3">3</button>
+                <button class="numOfQuestionsBtn" data-num-of-questions="5">5</button>
+                <button class="numOfQuestionsBtn" data-num-of-questions="7">7</button>
+            </div>
+        </div>
         <div class="homePage">
             <header>
                 <h1>Test Your Thai</h1>
@@ -21,7 +32,9 @@
                 <h1>Test Your Thai</h1>
             </header>
             <div class="utilities">
-                <div class="progressBar"></div>
+                <div class="progressBarContainer">
+                    <div class="progressBar"></div>
+                </div>
                 <p id="timer">00:03:00</p>
             </div>
             <div class="questionBox">
@@ -38,6 +51,24 @@
             <div class="navigationBtnsBox">
                 <button id="previousBtn">Previous</button>
                 <button id="nextBtn">Next</button>
+            </div>
+            <p id="currentQuestionCounter"></p>
+        </div>
+        <div class="resultPage">
+            <header>
+                <p>Your Results are ready!</p>
+            </header>
+            <div class="remarksBox">
+                <p id="remarks"></p>
+            </div>
+            <div class="scoreBoxContainer">
+                <div class="scoreBox1"></div>
+                <div class="scoreBox2"></div>
+            </div>
+            <p id="questionsAttempted"></p>
+            <div class="reviewOrReplayBtnsBox">
+                <button id="reviewQuizBtn">Review Quiz</button>
+                <button id="playAgainBtn">Play Again</button>
             </div>
         </div>
     </div>
