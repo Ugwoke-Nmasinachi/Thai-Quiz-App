@@ -1,4 +1,6 @@
 const startQuizBtn = document.getElementById('startQuizBtn');
+const chooseCategoryPage = document.querySelector('.chooseCategoryPage');
+const chooseDifficultyPage = document.querySelector('.chooseDifficultyPage');
 const numOfQuestionsPage = document.querySelector('.chooseNumOfQuestionsPage')
 const homePage = document.querySelector('.homePage');
 const quizPage = document.querySelector('.quizPage');
@@ -11,14 +13,20 @@ const playAgainBtn = document.getElementById('playAgainBtn');
 const currentQuestionCounter = document.getElementById('currentQuestionCounter');
 const progressBar = document.querySelector('.progressBar');
 const noOfQuestionsBtn = document.querySelectorAll('.numOfQuestionsBtn');
+const difficultyLevelBtn = document.querySelectorAll('.difficultyLevelBtn');
+const categoryBtn = document.querySelectorAll('.categoryBtn');
+const languageBtn = document.querySelector('#languageBtn');
 let questionBank = [];
 
 let currentQuestionIndex = 0;
 let points = 0;
 let attemptedQuestions = 0;
+let difficulty = null;
+let category = null;
 let numOfQuestions = 0;
 let selectedOption = null;
 let userAnswers = [];
+
 //function to shuffle questions (random question order)
 function shuffleQuestions(array){
     for(let i = array.length - 1; i > 0; i--){
@@ -27,7 +35,17 @@ function shuffleQuestions(array){
     }
     return array
 }
+//handle language change
+let language = "romanized";
+languageBtn.addEventListener('click', () => {
+    /*if language is already = romanized and button to switch is clicked, then make language become thai and vice versa*/
+    language = (language == "romanized") ? "thai" : "romanized";
+    languageBtn.textContent = (language == "romanized") ? "Switch to thai" : "Switch to romanized";
+    loadQuiz()
+})
 function loadQuiz(){
+    chooseCategoryPage.style.display = 'none';
+    chooseDifficultyPage.style.display = 'none';
     numOfQuestionsPage.style.display = 'none';
     homePage.style.display = 'none';
     resultPage.style.display = 'none';
@@ -35,10 +53,10 @@ function loadQuiz(){
 
     //load question
     let currentQuestion = questionBank[currentQuestionIndex];
-    question.textContent = `${currentQuestionIndex+1}. ${currentQuestion.question}`;
+    question.textContent = `${currentQuestionIndex+1}. ${currentQuestion.question[language]}`;
     optionsBox.innerHTML = ''; //clear previous options
     //load options
-    currentQuestion.options.forEach((option) => {
+    currentQuestion.options[language].forEach((option, index) => {
         let btn = document.createElement('button');
         btn.className = 'options';
         btn.textContent = option;
@@ -56,7 +74,7 @@ function loadQuiz(){
                     opt.classList.remove('selected');
                 })
                 btn.classList.add('selected');
-                selectedOption = option
+                selectedOption = index;//stores option's index rather than answer itself
             }
             userAnswers[currentQuestionIndex] = selectedOption;
         })
@@ -103,6 +121,8 @@ function previousQuestion(){
 previousBtn.addEventListener('click', previousQuestion)
 
 function displayResult(){
+    chooseCategoryPage.style.display = 'none';
+    chooseDifficultyPage.style.display = 'none';
     numOfQuestionsPage.style.display = 'none';
     homePage.style.display = 'none';
     quizPage.style.display = 'none';
@@ -166,38 +186,101 @@ function playAgain(){
     numOfQuestions = 0;
     nextBtn.textContent = 'Next';
     userAnswers = [];
-    numOfQuestionsPage.style.display = 'block';
+    chooseCategoryPage.style.display = 'block';
+    chooseDifficultyPage.style.display = 'none';
+    numOfQuestionsPage.style.display = 'none';
     quizPage.style.display = 'none';
     resultPage.style.display = 'none';
     homePage.style.display = 'none';
 }
 playAgainBtn.addEventListener('click', playAgain)
+
+//when user selects a category
+categoryBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        category = btn.dataset.category;
+        goToDifficultyPage();
+    })
+})
+function goToDifficultyPage(){
+    quizPage.style.display = 'none';
+    resultPage.style.display = 'none';
+    homePage.style.display = 'none';
+    chooseDifficultyPage.style.display = 'block';
+    numOfQuestionsPage.style.display = 'none';
+    chooseCategoryPage.style.display = 'none';
+}
+//when user selects a difficulty
+difficultyLevelBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        difficulty = btn.dataset.difficulty;
+        goToNoOfQuestionsPage();
+    })
+})
+function goToNoOfQuestionsPage(){
+    quizPage.style.display = 'none';
+    resultPage.style.display = 'none';
+    homePage.style.display = 'none';
+    chooseDifficultyPage.style.display = 'none';
+    numOfQuestionsPage.style.display = 'block';
+}
+
+//when user selects a number of question
 noOfQuestionsBtn.forEach(btn => {
     btn.addEventListener('click', () => {
         let num = btn.dataset.numOfQuestions;
         numOfQuestions = parseInt(num);
-        console.log(num)
         goToHomePage();
     })
 })
 function goToHomePage(){
+    chooseDifficultyPage.style.display = 'none';
     numOfQuestionsPage.style.display = 'none';
     quizPage.style.display = 'none';
     resultPage.style.display = 'none';
     homePage.style.display = 'block';
 }
+
 startQuizBtn.addEventListener('click', () => {
     /*every time start quiz is clicked. it fetches current json abd then loads the quiz. Note: I decided to fetch everytime startQuiz is clicked rather than fetching once so that if there's an update to the json file, it loads that current version*/
     fetch("questions.json")
      .then(response => response.json())
      .then(data => {
         let fetchedQuestions = data;//fetch questions
-        shuffleQuestions(fetchedQuestions);//shuffle questions
-        //now get the selected questions based on no of questions (Notice i shuffled b4 slicing)
-        let selectedQuestions = fetchedQuestions.slice(0, numOfQuestions);
+        let filteredQuestions;
+        
+        //filter based on selected difficulty and category. Take only if difficulty matvhes or they choose all. same for category
+        filteredQuestions = fetchedQuestions.filter((q) => {
+            return ((difficulty === "all" || (q.difficulty === difficulty)) && ((category === "all")|| (q.category === category)));
+        })
+
+        shuffleQuestions(filteredQuestions);//shuffle questions
+        //now get the filtered questions and based on no of questions (Notice i shuffled b4 slicing)
+        let selectedQuestions = filteredQuestions.slice(0, numOfQuestions);
+
+        //if questions in a difficulty level are not up to selected num of questions. e.g you want 10 questions in easy level. but there are only 5 easy questions. so it tells a message
+        if(selectedQuestions.length < numOfQuestions){
+            let msg = `Note: Only ${selectedQuestions.length} available questions in this difficulty/category!`;
+            let warning = document.getElementById('availableQuestionsWarningMsg');
+            warning.style.display = 'block';
+            warning.textContent = msg;
+
+            setInterval(() => {
+                warning.style.display = 'none';
+            }, 5000)
+        }
+
         //now store them inside your questionBank
-        questionBank = selectedQuestions
-        loadQuiz();
+        questionBank = selectedQuestions;
+
+        if(selectedQuestions.length == 0){
+             //if no questions, tell them then restart qui
+            alert("No questions available for this category/difficulty!");
+            playAgain();
+        }else{
+           //only load questions if there is at least one question available after filtering
+           loadQuiz();
+        }
     })
     .catch(error => console.error("Error loading questions:", error));
 })

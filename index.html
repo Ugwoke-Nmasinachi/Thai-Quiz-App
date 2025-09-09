@@ -8,11 +8,35 @@
 </head>
 <body>
     <div class="wrapper">
+        <div class="chooseCategoryPage">
+            <header>
+                <h1>Test Your Thai</h1>
+            </header>
+            <p>Select a Category</p>
+            <div class="chooseCategoryPageBtnsBox">
+                <button class="categoryBtn" data-category="greetingsAndBasics">Greetings and Basics</button>
+                <button class="categoryBtn" data-category="foodAndDrinks">Food and Drinks</button>
+                <button class="categoryBtn" data-category="dailyLife">Daily Life</button>
+                <button class="categoryBtn" data-category="all">All</button>
+            </div>
+        </div>
+        <div class="chooseDifficultyPage">
+            <header>
+                <h1>Test Your Thai</h1>
+            </header>
+            <p>Select a Difficulty</p>
+            <div class="chooseDifficultyPageBtnsBox">
+                <button class="difficultyLevelBtn" data-difficulty="easy">Easy</button>
+                <button class="difficultyLevelBtn" data-difficulty="medium">Medium</button>
+                <button class="difficultyLevelBtn" data-difficulty="hard">Hard</button>
+                <button class="difficultyLevelBtn" data-difficulty="all">All</button>
+            </div>
+        </div>
         <div class="chooseNumOfQuestionsPage">
             <header>
                 <h1>Test Your Thai</h1>
             </header>
-            <p>Choose Number of questions</p>
+            <p>Select Number of questions</p>
             <div class="chooseNumOfQuestionsPageBtnsBox">
                 <button class="numOfQuestionsBtn" data-num-of-questions="3">3</button>
                 <button class="numOfQuestionsBtn" data-num-of-questions="5">5</button>
@@ -30,7 +54,9 @@
         <div class="quizPage" >
             <header>
                 <h1>Test Your Thai</h1>
+                <button id="languageBtn">Switch To Thai</button>
             </header>
+            <p id="availableQuestionsWarningMsg"></p>
             <div class="utilities">
                 <div class="progressBarContainer">
                     <div class="progressBar"></div>

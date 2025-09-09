@@ -1,38 +1,108 @@
 [
      {
-        "question": "1+1",
-        "options": [2,3,4,5],
-        "answer": 2
+        "question": 
+          {
+            "thai": "1+1",
+            "romanized": "one + one"
+          },
+        "options": 
+          {
+            "thai": [1,2,3,4],
+            "romanized": ["one", "two", "three", "four"]
+          },
+        "answer": 1,
+        "difficulty": "easy",
+        "category": "dailyLife"
     },
     {
-        "question": "3+2",
-        "options": [2,3,4,5],
-        "answer": 5
+        "question": 
+          {
+            "thai": "3+2",
+            "romanized": "three + two"
+          },
+        "options": 
+          {
+            "thai": [1,2,5,4],
+            "romanized": ["one", "two", "five", "four"]
+          },
+        "answer": 2,
+        "difficulty": "hard",
+        "category": "greetingsAndBasics"
     },
     {
-        "question": "9-2",
-        "options": [2,3,7,5],
-        "answer": 7
+        "question":  
+         {
+            "thai": "8-1",
+            "romanized": "eight + one"
+          },
+        "options": 
+         {
+            "thai": [4,2,1,7],
+            "romanized": ["four", "two", "one", "seven"]
+          },
+        "answer": 3,
+        "difficulty": "hard",
+        "category": "foodAndDrinks"
     },
     {
-        "question": "3-1",
-        "options": [2,3,7,5],
-        "answer": 2
+        "question": 
+         {
+            "thai": "3-1",
+            "romanized": "three - one"
+          },
+        "options": 
+         {
+            "thai": [3,1,2,4],
+            "romanized": ["three", "one", "two", "four"]
+          },
+        "answer": 2,
+        "difficulty": "hard",
+        "category": "greetingsAndBasics"
     },
     {
-        "question": "2*3",
-        "options": [2,6,7,5],
-        "answer": 6
+        "question": 
+         {
+            "thai": "3*2",
+            "romanized": "three*two"
+          },
+        "options": 
+         {
+            "thai": [6,9,1,5],
+            "romanized": ["six", "nine", "one", "five"]
+          },
+        "answer": 0,
+        "difficulty": "easy",
+        "category": "dailyLife"
     }, 
     {
-        "question": "40/20",
-        "options": [2,3,7,5],
-        "answer": 2
+        "question": 
+         {
+            "thai": "40/20",
+            "romanized": "forty/twenty"
+          },
+        "options": 
+         {
+            "thai": [10,2,30,1],
+            "romanized": ["ten", "two", "thirty", "one"]
+          },
+        "answer": 1,
+        "difficulty": "medium",
+        "category": "greetingsAndBasics"
     },
     {
-        "question": "6+6",
-        "options": [2,3,7,12],
-        "answer": 12
+        "question": 
+         {
+            "thai": "6+6",
+            "romanized": "six+six"
+          },
+        "options": 
+         {
+            "thai": [15,18,19,12],
+            "romanized": ["fifteen", "eighteen", "nineteen", "twelve"]
+          },
+        "answer": 3,
+        "difficulty": "hard",
+        "category": "foodAndDrinks"
     }
     
 ]

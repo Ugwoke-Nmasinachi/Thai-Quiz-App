@@ -16,8 +16,82 @@ body{
     padding: 15px;
     box-shadow: 5px 5px 10px #5d3fd3;
 }
+/*styling the category page*/
+.chooseCategoryPage{
+    border: 1px solid #5d3fd3;
+    border-radius: 10px;
+    padding: 10px;
+}
+.chooseCategoryPage header{
+    margin-bottom: 5px;
+    border-bottom: 1px solid #5d3fd3;
+    color:#5d3fd3;
+}
+.chooseCategoryPage p{
+    color: #5d3fd3;
+}
+.chooseCategoryPageBtnsBox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-top: 10px;
+    overflow: auto;
+}
+.chooseCategoryPageBtnsBox .categoryBtn{
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #5d3fd3;
+    background-image: linear-gradient(to bottom right, #5d3fd3, #e6e6fa );
+    color: #e6e6fa;
+    font-weight: bold;
+}
+.chooseCategoryPage .categoryBtn:active{
+    transform: translateY(0.6px);
+}
+.chooseCategoryPageBtnsBox .categoryBtn:hover{
+    background-image: linear-gradient(to bottom right, #e6e6fa, #5d3fd3 50% );
+}
+/*styling the difficulty page*/
+.chooseDifficultyPage{
+    border: 1px solid #5d3fd3;
+    border-radius: 10px;
+    padding: 10px;
+    display: none;
+}
+.chooseDifficultyPage header{
+    margin-bottom: 5px;
+    border-bottom: 1px solid #5d3fd3;
+    color:#5d3fd3;
+}
+.chooseDifficultyPage p{
+    color: #5d3fd3;
+}
+.chooseDifficultyPageBtnsBox{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+.chooseDifficultyPageBtnsBox .difficultyLevelBtn{
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #5d3fd3;
+    background-image: linear-gradient(to bottom right, #5d3fd3, #e6e6fa );
+    color: #e6e6fa;
+    font-weight: bold;
+}
+.chooseDifficultyPage .difficultyLevelBtn:active{
+    transform: translateY(0.6px);
+}
+.chooseDifficultyPageBtnsBox .difficultyLevelBtn:hover{
+    background-image: linear-gradient(to bottom right, #e6e6fa, #5d3fd3 50% );
+}
 /*styling the choosing no of questions page*/
 .chooseNumOfQuestionsPage{
+    display: none;
     border: 1px solid #5d3fd3;
     border-radius: 10px;
     padding: 10px;
@@ -93,6 +167,33 @@ body{
 .quizPage header{
     border-bottom: 1px solid #5d3fd3;
     color:#5d3fd3;
+}
+.quizPage #languageBtn{
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border: 1px solid #5d3fd3;
+    background-image: linear-gradient(to bottom right, #5d3fd3, #e6e6fa );
+    color: #e6e6fa;
+    font-weight: bold;
+}
+.quizPage #languageBtn:active{
+    transform: translateY(0.6px);
+}
+.quizPage #languageBtn:hover{
+    background-image: linear-gradient(to bottom right, #e6e6fa, #5d3fd3 50% );
+}
+#availableQuestionsWarningMsg{
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+    display: none;
+    animation: blinkMsg 1s infinite;
+}
+@keyframes blinkMsg {
+    0%,100%{opacity: 1;}
+    50%{opacity: 0;}
 }
 .quizPage .utilities{
     display: flex;
