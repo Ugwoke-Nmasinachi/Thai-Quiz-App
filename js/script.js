@@ -14,18 +14,24 @@ const currentQuestionCounter = document.getElementById('currentQuestionCounter')
 const progressBar = document.querySelector('.progressBar');
 const noOfQuestionsBtn = document.querySelectorAll('.numOfQuestionsBtn');
 const difficultyLevelBtn = document.querySelectorAll('.difficultyLevelBtn');
+const reviewOrReplayBtnsBox = document.querySelector('.reviewOrReplayBtnsBox')
+const reviewQuizBtn = document.getElementById('reviewQuizBtn');
+const timerElement =  document.getElementById('timer')
 const categoryBtn = document.querySelectorAll('.categoryBtn');
 const languageBtn = document.querySelector('#languageBtn');
 let questionBank = [];
 
+let duration = 0;
 let currentQuestionIndex = 0;
 let points = 0;
 let attemptedQuestions = 0;
 let difficulty = null;
 let category = null;
 let numOfQuestions = 0;
+let currentProgress = 0;
 let selectedOption = null;
 let userAnswers = [];
+let selectedQuestions;
 
 //function to shuffle questions (random question order)
 function shuffleQuestions(array){
@@ -44,12 +50,15 @@ languageBtn.addEventListener('click', () => {
     loadQuiz()
 })
 function loadQuiz(){
+    //set pages
     chooseCategoryPage.style.display = 'none';
     chooseDifficultyPage.style.display = 'none';
     numOfQuestionsPage.style.display = 'none';
     homePage.style.display = 'none';
     resultPage.style.display = 'none';
     quizPage.style.display = 'block';
+
+    updateProgressBar();
 
     //load question
     let currentQuestion = questionBank[currentQuestionIndex];
@@ -61,6 +70,7 @@ function loadQuiz(){
         btn.className = 'options';
         btn.textContent = option;
 
+        userAnswers[currentQuestionIndex] = null;
         //when an option is selected
         btn.addEventListener('click', () => {
             //if user clicks an option they already selected to unselect it
@@ -90,7 +100,7 @@ function loadQuiz(){
 }
 function updateProgressBar(){
     /*track the current question in percentage. ex: if ur on question 7 out of 10. ur current progress will be 70%. Then make the progressBar's width 70%, this gives it a look that its progressing but it's just the progressBar's width increasing or reducing*/
-    let currentProgress = ((currentQuestionIndex+1) / questionBank.length) *100;
+    currentProgress = ((currentQuestionIndex+1) / questionBank.length) *100;
     progressBar.style.width = currentProgress + '%';
 }
 //move to next question
@@ -128,16 +138,28 @@ function displayResult(){
     quizPage.style.display = 'none';
     resultPage.style.display = 'block';
 
+    //if they click review quiz btn
+    reviewQuizBtn.addEventListener('click', () => {
+        alert('Check Console for quiz review')
+
+        userAnswers.forEach((ans, index) => {
+            /*This is just a quiz review that will show up in my console until i do the review quiz page*/
+           console.log(`Question(${index+1}): ${questionBank[index].question[language]}`);
+           console.log(`Options: ${questionBank[index].options[language]}`);
+           console.log(`Answer: ${questionBank[index].options[language][questionBank[index].answer]}`);
+           console.log(`You Chose: ${questionBank[index].options[language][userAnswers[index]]} `);
+           console.log("-----")
+        })
+    })
+    
     userAnswers.forEach((ans, index) => {
         if(userAnswers[index] != null){
             attemptedQuestions++;
             if((userAnswers[index] == questionBank[index].answer)){//user got it
-            points++;
-            console.log(points);
+              points++;
+            }
         }
-        }else{
-            console.log(points)
-        }
+        
     })
     let percentage = (points / questionBank.length) * 100;
     let passingPercentage = 80;
@@ -145,13 +167,13 @@ function displayResult(){
 
     let remarks = document.getElementById('remarks');
     if(percentage >= passingPercentage){
-        remarks.textContent = `You Passed! One cold malt for you!`;
+        remarks.textContent = `Nice Job! You Passed`;
         remarks.style.color = 'green';
     }else if(percentage >= 60 && percentage < passingPercentage){
-        remarks.textContent = `You Tried! O fe spaghetti?`;
-         remarks.style.color = 'orange';
+        remarks.textContent = `You tried! Keep it up!`;
+        remarks.style.color = 'orange';
     }else{
-        remarks.textContent = `You Failed! CYNTHIA OFOREEE!!`;
+        remarks.textContent = `You Failed! Pay more attention during thai study`;
         remarks.style.color = 'red';
     }
 
@@ -184,6 +206,7 @@ function playAgain(){
     attemptedQuestions = 0;
     selectedOption = null;
     numOfQuestions = 0;
+    updateProgressBar();//so progress bar goes to beginning
     nextBtn.textContent = 'Next';
     userAnswers = [];
     chooseCategoryPage.style.display = 'block';
@@ -195,6 +218,27 @@ function playAgain(){
 }
 playAgainBtn.addEventListener('click', playAgain)
 
+function startTimer(){
+    //duration is based on num of questions
+    duration = selectedQuestions.length * 45;//allows you to have at least 45secs on a question
+    timerElement.textContent = "00:00";
+    const timerInterval = setInterval(() => {
+        let minutes = Math.floor(duration / 60); //e.g duration = 180s. minutes = 180/60 = 3mins
+        let seconds = duration % 60;//e.g duration = 125s. seconds = 125/60 = 2mins 5 seconds. the remainder is 5, thats why i used "%"
+
+        minutes = (minutes < 10)? "0" + minutes: minutes; //if munutes = 20. good but if minutes = 3, it will show 03 not just 3;
+        seconds = (seconds < 10)? "0" + seconds: seconds; //if munutes = 20. good but if minutes = 3, it will show 03 not just 3;
+
+        timerElement.textContent = `${minutes}:${seconds}`;
+        duration--;//decrease the time left every time
+
+        if(duration < 0){
+            clearInterval(timerInterval);
+            displayResult();
+            timerElement.textContent = "00:00";
+        }
+    },1000)
+}
 //when user selects a category
 categoryBtn.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -240,7 +284,6 @@ function goToHomePage(){
     resultPage.style.display = 'none';
     homePage.style.display = 'block';
 }
-
 startQuizBtn.addEventListener('click', () => {
     /*every time start quiz is clicked. it fetches current json abd then loads the quiz. Note: I decided to fetch everytime startQuiz is clicked rather than fetching once so that if there's an update to the json file, it loads that current version*/
     fetch("questions.json")
@@ -256,7 +299,7 @@ startQuizBtn.addEventListener('click', () => {
 
         shuffleQuestions(filteredQuestions);//shuffle questions
         //now get the filtered questions and based on no of questions (Notice i shuffled b4 slicing)
-        let selectedQuestions = filteredQuestions.slice(0, numOfQuestions);
+        selectedQuestions = filteredQuestions.slice(0, numOfQuestions);
 
         //if questions in a difficulty level are not up to selected num of questions. e.g you want 10 questions in easy level. but there are only 5 easy questions. so it tells a message
         if(selectedQuestions.length < numOfQuestions){
@@ -278,6 +321,8 @@ startQuizBtn.addEventListener('click', () => {
             alert("No questions available for this category/difficulty!");
             playAgain();
         }else{
+           //start timer
+           startTimer();
            //only load questions if there is at least one question available after filtering
            loadQuiz();
         }

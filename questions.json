@@ -2,107 +2,107 @@
      {
         "question": 
           {
-            "thai": "1+1",
-            "romanized": "one + one"
+            "thai": "How do you respond to: ขอบคุฌค่ะ",
+            "romanized": "How do you respond to: khaawp khun kha"
           },
         "options": 
           {
-            "thai": [1,2,3,4],
-            "romanized": ["one", "two", "three", "four"]
+            "thai": ["เหนื่อยมาก", "ใช่", "หิวมากเลย", "ไม่เป็นไร"],
+            "romanized": ["nueeai maak", "chai", "hiu maak loei", "mai bpen rai"]
           },
-        "answer": 1,
+        "answer": 3,
         "difficulty": "easy",
-        "category": "dailyLife"
+        "category": "greetingsAndBasics"
     },
     {
         "question": 
           {
-            "thai": "3+2",
-            "romanized": "three + two"
+            "thai": "Friend: ",
+            "romanized": "Friend: Wat dii, Sa bai dii mai? How do you respond"
           },
         "options": 
           {
-            "thai": [1,2,5,4],
-            "romanized": ["one", "two", "five", "four"]
+            "thai": ["", "", "", ""],
+            "romanized": ["sa bai dii", "yaak glap baan", "haa", "wan nii"]
           },
-        "answer": 2,
-        "difficulty": "hard",
+        "answer": 0,
+        "difficulty": "easy",
         "category": "greetingsAndBasics"
     },
     {
         "question":  
          {
-            "thai": "8-1",
-            "romanized": "eight + one"
+            "thai": "Translate:",
+            "romanized": "Translate: chan sa bai dii, khaawp khun laaeo khun la"
           },
         "options": 
          {
-            "thai": [4,2,1,7],
-            "romanized": ["four", "two", "one", "seven"]
+            "thai": ["", "", "", ""],
+            "romanized": ["I'm on my way, I'll be there soon", "I'm fine, thank you and you?", "Nice to meet you!", "Are you alright?"]
           },
-        "answer": 3,
-        "difficulty": "hard",
-        "category": "foodAndDrinks"
-    },
-    {
-        "question": 
-         {
-            "thai": "3-1",
-            "romanized": "three - one"
-          },
-        "options": 
-         {
-            "thai": [3,1,2,4],
-            "romanized": ["three", "one", "two", "four"]
-          },
-        "answer": 2,
-        "difficulty": "hard",
+        "answer": 1,
+        "difficulty": "easy",
         "category": "greetingsAndBasics"
     },
     {
         "question": 
          {
-            "thai": "3*2",
-            "romanized": "three*two"
+            "thai": "Which response is correct for:",
+            "romanized": "Which response is correct for: khun yaak gin khaao a-rai"
           },
         "options": 
          {
-            "thai": [6,9,1,5],
-            "romanized": ["six", "nine", "one", "five"]
+            "thai": ["", "", "", ""],
+            "romanized": ["khaao gap gai", "gam-lang phak", "dtriam dtua set", "hiu maak loei"]
           },
         "answer": 0,
         "difficulty": "easy",
-        "category": "dailyLife"
+        "category": "foodAndDrinks"
+    },
+    {
+        "question": 
+         {
+            "thai": "Which option matches:",
+            "romanized": "Which option matches: egg, fish, rice"
+          },
+        "options": 
+         {
+            "thai": ["", "", "", ""],
+            "romanized": ["plaa, gai, khaao", "khai, plaa, khao", "khai, plaa, khaao", "thuaa, pla, khai"]
+          },
+        "answer": 2,
+        "difficulty": "easy",
+        "category": "foodAndDrinks"
     }, 
     {
         "question": 
          {
-            "thai": "40/20",
-            "romanized": "forty/twenty"
+            "thai": "Translate: ",
+            "romanized": "Translate: Wan nii, khun gin a-rai?"
           },
         "options": 
          {
-            "thai": [10,2,30,1],
-            "romanized": ["ten", "two", "thirty", "one"]
+            "thai": ["", "", "", ""],
+            "romanized": ["Isn't today is a beautiful day?", "Are you eating now?", "What do you want?", "What did you eat today?"]
           },
-        "answer": 1,
+        "answer": 3,
         "difficulty": "medium",
-        "category": "greetingsAndBasics"
+        "category": "foodAndDrinks"
     },
     {
         "question": 
          {
-            "thai": "6+6",
-            "romanized": "six+six"
+            "thai": "What role did Freen Sarocha play in Gap: The series",
+            "romanized": "What role did Freen Sarocha play in Gap: The series"
           },
         "options": 
          {
             "thai": [15,18,19,12],
-            "romanized": ["fifteen", "eighteen", "nineteen", "twelve"]
+            "romanized": ["Khun Nueng", "Khun Sam", "Khun Pin", "Anin"]
           },
-        "answer": 3,
-        "difficulty": "hard",
-        "category": "foodAndDrinks"
+        "answer": 1,
+        "difficulty": "easy",
+        "category": "thaiSeries"
     }
     
 ]

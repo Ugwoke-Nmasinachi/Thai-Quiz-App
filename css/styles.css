@@ -211,6 +211,7 @@ body{
     height: 100%;
     background-color: #5d3fd3;
     width: 0;
+    transition: width 1s;
 }
 .utilities #timer{
     color: #5d3fd3;
@@ -230,6 +231,13 @@ body{
     color: #e6e6fa;
     font-weight: bolder;
     font-size: 15px;
+}
+ .fade{
+    animation: fadeQuestion 1s;
+}
+@keyframes fadeQuestion {
+    0%,100%{opacity: 1;}
+    50%{opacity: 0;}
 }
 .optionsBox{
     margin: 10px 0 15px 0;
